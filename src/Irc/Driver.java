@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultCaret;
 
 /**
  *
@@ -41,6 +42,7 @@ public class Driver
         outputfield = new JTextArea(40, 80);
         outputfield.setEditable(false);
         outputfield.setLineWrap(true);
+        ((DefaultCaret)outputfield.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         
         JScrollPane scroller = new JScrollPane(outputfield);
         
