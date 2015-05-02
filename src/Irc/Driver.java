@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -49,7 +50,10 @@ public class Driver
         window.pack();
         window.setVisible(true);
         
-        client = new IOHandler("irc.synirc.net", 6667);
+        String serverHostname = JOptionPane.showInputDialog("Enter server hostname");
+        int portNumber = Integer.parseInt(JOptionPane.showInputDialog("Enter port number\n (6667 is a common port number)"));
+        
+        client = new IOHandler(serverHostname, portNumber);
         client.setReadListener(new Driver().new ClientOutputAction());
     }
     
