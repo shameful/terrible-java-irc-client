@@ -79,13 +79,16 @@ public class UI
     public ActionListener getOutputListener()
     {
         return new 
-            ActionListener(){@Override public void actionPerformed(ActionEvent ae)
+            ActionListener()
             {
-                SwingUtilities.invokeLater(new 
-                    Runnable()
-                    {
-                        @Override public void run(){output.append(ae.getActionCommand()+ "\n");}
-                    });
-            }};
+                @Override public void actionPerformed(ActionEvent ae)
+                {
+                    SwingUtilities.invokeLater(new 
+                        Runnable()
+                        {
+                            @Override public void run(){output.append(ae.getActionCommand()+ "\n");}
+                        });
+                }
+            };
     }
 }
