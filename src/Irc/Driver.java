@@ -34,26 +34,4 @@ public class Driver
         client.setReadListener(testui.getOutputListener());
         testui.addInputListener(client.getWriteListener());
     }
-    
-    private class UserInputAction implements ActionListener
-    {
-
-        @Override public void actionPerformed(ActionEvent ae)
-        {
-            client.writeToSocket(inputfield.getText());
-            outputfield.append(inputfield.getText() + "\n");
-            inputfield.setText("");
-        }
-        
-    }
-    
-    private class ClientOutputAction implements ActionListener
-    {
-
-        @Override public void actionPerformed(ActionEvent ae)
-        {
-            outputfield.append(ae.getActionCommand() + "\n");
-        }
-        
-    }
 }
