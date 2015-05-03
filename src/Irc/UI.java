@@ -74,6 +74,11 @@ public class UI
         window.setVisible(true);
     }
     
+    public String getUserInputBlocking(String str)
+    {
+         return JOptionPane.showInputDialog(str);
+    }
+    
     public void addInputListener(ActionListener al)
     {
         input.addActionListener(al);
