@@ -32,6 +32,7 @@ public class Driver
         
         client = new IOHandler(serverHostname, portNumber);
         client.setReadListener(testui.getOutputListener());
+        testui.addInputListener(client.getWriteListener());
     }
     
     private class UserInputAction implements ActionListener

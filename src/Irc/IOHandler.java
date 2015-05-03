@@ -48,6 +48,17 @@ public class IOHandler
         try{outStream.writeBytes(str + "\r\n");} catch(IOException exc) {stringOutClient("err: write failed: " + str);}
     }
     
+    public ActionListener getWriteListener()
+    {
+        return new ActionListener()
+        {
+            @Override public void actionPerformed(ActionEvent ae)
+            {
+                writeToSocket(ae.getActionCommand());
+            }
+        };
+    }
+    
     private void stringOutClient(String str)
     {
         readListener.actionPerformed(new ActionEvent(this, 0, str));

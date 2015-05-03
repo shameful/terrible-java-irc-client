@@ -41,6 +41,14 @@ public class UI
         input.setForeground(FOREGROUND_COLOR_DEFAULT);
         input.setBackground(BACKGROUND_COLOR_DEFAULT);
         input.setCaretColor(FOREGROUND_COLOR_DEFAULT);
+        input.addActionListener(new ActionListener()
+        {
+            @Override public void actionPerformed(ActionEvent ae)
+            {
+                output.append(">> " + input.getText() + "\n");
+                input.setText("");
+            }
+        });
         
         output.setEditable(false);
         output.setLineWrap(true);
