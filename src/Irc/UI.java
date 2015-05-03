@@ -6,11 +6,17 @@
 
 package Irc;
 
+import javax.swing.*;
+
 /**
  *
  * @author blane
  */
 public class UI
 {
-    
+    private JFrame window;
+    private JPanel panel;
+    private JScrollPane scroller;
+    private JTextArea output;
+    private JTextField input;
 }
