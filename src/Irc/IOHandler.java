@@ -7,14 +7,10 @@
 
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
 import java.util.Scanner;
-import javax.swing.SwingUtilities;
 
 /**
  *
