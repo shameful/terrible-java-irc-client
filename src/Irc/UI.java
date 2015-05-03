@@ -23,7 +23,6 @@ public class UI
     private JScrollPane scroller;
     private JTextArea output;
     private JTextField input;
-    private ActionListener inputListener;
 
     public UI()
     {
@@ -67,9 +66,14 @@ public class UI
         window.setVisible(true);
     }
     
-    public void setInputListener(ActionListener al)
+    public void addInputListener(ActionListener al)
     {
-        inputListener = al;
+        input.addActionListener(al);
+    }
+    
+    public void removeInputListener(ActionListener al)
+    {
+        input.removeActionListener(al);
     }
     
     public ActionListener getOutputListener()
