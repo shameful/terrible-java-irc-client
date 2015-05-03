@@ -4,12 +4,6 @@
  * and open the template in the editor.
  */
 
-
-
-
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
 /**
  *
  * 
@@ -18,8 +12,6 @@ public class Driver
 {
     
     private static IOHandler client;
-    private static JTextField inputfield;
-    private static JTextArea outputfield;
     
     public static void main(String[] args)
     {
