@@ -7,14 +7,10 @@
 
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
 import java.util.Scanner;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -52,6 +48,17 @@ public class IOHandler
         try{outStream.writeBytes(str + "\r\n");} catch(IOException exc) {stringOutClient("err: write failed: " + str);}
     }
     
+    public ActionListener getWriteListener()
+    {
+        return new ActionListener()
+        {
+            @Override public void actionPerformed(ActionEvent ae)
+            {
+                writeToSocket(ae.getActionCommand());
+            }
+        };
+    }
+    
     private void stringOutClient(String str)
     {
         readListener.actionPerformed(new ActionEvent(this, 0, str));
@@ -67,22 +74,6 @@ public class IOHandler
         readListener = al;
     }
     
-    
-    private class swingInvokerForThread implements Runnable
-    {
-        private String str;
-        
-        public swingInvokerForThread(String toDisplay)
-        {
-            str = toDisplay;
-        }
-        
-        @Override public void run()
-        {
-            stringOutClient(str);
-        }
-    }
-    
     private class ReadThreaded implements Runnable
     {
         @Override public void run()
@@ -93,7 +84,7 @@ public class IOHandler
                 {
                     streamInput = socketInWrapper.nextLine();
                     if(streamInput.startsWith("PING ")) {pingReply(streamInput);}
-                    else {SwingUtilities.invokeLater(new swingInvokerForThread(streamInput));}
+                    else {stringOutClient(streamInput);}
                 }
             }
         }
