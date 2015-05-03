@@ -11,7 +11,7 @@ import javax.swing.text.DefaultCaret;
 
 /**
  *
- * @author blane
+ *
  */
 public class UI
 {

@@ -36,50 +36,12 @@ public class Driver
     
     public static void main(String[] args)
     {
-        JFrame window = new JFrame("IRC");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(900,675));
-        panel.setForeground(FOREGROUND_COLOR);
-        panel.setBackground(BACKGROUND_COLOR);
-        
-        inputfield = new JTextField(80);
-        inputfield.addActionListener(new Driver().new UserInputAction());
-        inputfield.setForeground(FOREGROUND_COLOR);
-        inputfield.setBackground(BACKGROUND_COLOR);
-        inputfield.setCaretColor(FOREGROUND_COLOR);
-        
-        outputfield = new JTextArea(40, 80);
-        outputfield.setEditable(false);
-        outputfield.setLineWrap(true);
-        outputfield.setForeground(FOREGROUND_COLOR);
-        outputfield.setBackground(BACKGROUND_COLOR);
-        ((DefaultCaret)outputfield.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        outputfield.getCaret().setVisible(true);
-        outputfield.setCaretColor(FOREGROUND_COLOR);
-        outputfield.addFocusListener(new 
-            FocusListener()
-            {
-
-                @Override public void focusGained(FocusEvent fe) {}
-
-                @Override public void focusLost(FocusEvent fe)
-                {outputfield.getCaret().setVisible(true);}
-            });
-        
-        JScrollPane scroller = new JScrollPane(outputfield);
-        
-        window.add(panel);
-        panel.add(scroller);
-        panel.add(inputfield);
-        window.pack();
-        window.setVisible(true);
-        
+        UI testui = new UI();
         String serverHostname = JOptionPane.showInputDialog("Enter server hostname");
         int portNumber = Integer.parseInt(JOptionPane.showInputDialog("Enter port number\n (6667 is a common port number)"));
         
         client = new IOHandler(serverHostname, portNumber);
-        client.setReadListener(new Driver().new ClientOutputAction());
+        client.setReadListener(testui.getOutputListener());
     }
     
     private class UserInputAction implements ActionListener
