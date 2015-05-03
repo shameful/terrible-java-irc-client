@@ -67,22 +67,6 @@ public class IOHandler
         readListener = al;
     }
     
-    
-    private class swingInvokerForThread implements Runnable
-    {
-        private String str;
-        
-        public swingInvokerForThread(String toDisplay)
-        {
-            str = toDisplay;
-        }
-        
-        @Override public void run()
-        {
-            stringOutClient(str);
-        }
-    }
-    
     private class ReadThreaded implements Runnable
     {
         @Override public void run()
@@ -93,7 +77,7 @@ public class IOHandler
                 {
                     streamInput = socketInWrapper.nextLine();
                     if(streamInput.startsWith("PING ")) {pingReply(streamInput);}
-                    else {SwingUtilities.invokeLater(new swingInvokerForThread(streamInput));}
+                    else {stringOutClient(streamInput);}
                 }
             }
         }
